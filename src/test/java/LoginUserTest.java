@@ -12,12 +12,11 @@ import org.junit.Before;
 import org.junit.Test;
 import Pageobject.BasePage;
 import Randomdata.UserGeneratorData;
-
 import java.io.IOException;
-
 import static Browser.Browser.initDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertFalse;
+
 
 @Epic("Login user")
 public class LoginUserTest {
@@ -42,13 +41,15 @@ public class LoginUserTest {
         basePage = null;
         //create an instance of BasePage class
         basePage = open(BasePage.BASE_URL, BasePage.class);
+        ValidatableResponse loginResponse = UserStepsApi.loginUser(user);
+        accessToken = loginResponse.extract().path("accessToken");
     }
 
     @After
     public void clearState() {
 
         //login user
-        response = UserStepsApi.loginUser(user, accessToken);
+        response = UserStepsApi.loginUser(user);
         UserStepsApiChecks.checkUserLoginByValidCredentialsSuccess(response);
         //user deletion`
         if (accessToken != null) {

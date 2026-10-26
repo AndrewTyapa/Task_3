@@ -20,6 +20,7 @@ import static Browser.Browser.initDriver;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertTrue;
 
+
 @Epic("User's registration")
 public class RegistrationUserTest {
     private ValidatableResponse response;
@@ -40,13 +41,16 @@ public class RegistrationUserTest {
 
         //create an instance of BasePage class
         basePage = open(BasePage.BASE_URL, BasePage.class);
+
+        ValidatableResponse loginResponse = UserStepsApi.loginUser(user);
+        accessToken = loginResponse.extract().path("accessToken");
     }
 
     @After
     public void clearState() {
 
         //login user
-        response = UserStepsApi.loginUser(user, accessToken);
+        response = UserStepsApi.loginUser(user);
         UserStepsApiChecks.checkUserLoginByValidCredentialsSuccess(response);
 
         //user deletion

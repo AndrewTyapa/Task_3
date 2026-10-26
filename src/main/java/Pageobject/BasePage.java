@@ -1,5 +1,6 @@
 package Pageobject;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -37,27 +38,27 @@ public class BasePage {
         return page(LoginPage.class);
     }
 
-    @Step("Check the bun ingredients current")
-    public boolean checkBunIngredientIsCurrent() {
-        SelenideElement bun = menuIngredients.get(0).lastChild();
-        bun.scrollIntoView(true);
-        bun.click();
-        return currentSectionOfIngredients.isDisplayed();
+    @Step("Verify that the 'Buns' tab is active and section is displayed")
+    public void verifyBunsTabIsActive() {
+        SelenideElement bunTab = menuIngredients.get(0).lastChild();
+        bunTab.scrollIntoView(true);
+        bunTab.click();
+        currentSectionOfIngredients.should(Condition.visible);
     }
 
-    @Step("Check the sauce ingredients current")
-    public boolean checkSauceIngredientIsCurrent() {
-        SelenideElement sauce = menuIngredients.get(1).lastChild();
-        sauce.scrollIntoView(true);
-        sauce.click();
-        return currentSectionOfIngredients.isDisplayed();
+    @Step("Verify that the 'Sauces' tab is active and section is displayed")
+    public void verifySaucesTabIsActive() {
+        SelenideElement sauceTab = menuIngredients.get(1).lastChild();
+        sauceTab.scrollIntoView(true);
+        sauceTab.click();
+        currentSectionOfIngredients.should(Condition.visible);
     }
 
-    @Step("Check the filling ingredients current")
-    public boolean checkFillingIngredientIsCurrent() {
-        SelenideElement filling = menuIngredients.get(2).lastChild();
-        filling.scrollIntoView(true);
-        filling.click();
-        return currentSectionOfIngredients.isDisplayed();
+    @Step("Verify that the 'Fillings' tab is active and section is displayed")
+    public void verifyFillingsTabIsActive() {
+        SelenideElement fillingTab = menuIngredients.get(2).lastChild();
+        fillingTab.scrollIntoView(true);
+        fillingTab.click();
+        currentSectionOfIngredients.should(Condition.visible);
     }
 }

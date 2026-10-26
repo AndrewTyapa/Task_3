@@ -25,22 +25,20 @@ public class ConstructorBurgerTest {
 
     @Test
     @DisplayName("Check if the bun ingredients 'Булки' current")
-    public void checkIfBunIngredientIsCurrent() {
-        boolean isDisplayed = basePage.checkBunIngredientIsCurrent();
-        assertTrue(isDisplayed);
+    public void shouldActivateBunsTab() {
+        basePage.verifyBunsTabIsActive();
     }
+
 
     @Test
     @DisplayName("Check if the sauce ingredient 'Соусы' current")
-    public void checkIfSauceIngredientIsCurrent() {
-        boolean isDisplayed = basePage.checkSauceIngredientIsCurrent();
-        assertTrue(isDisplayed);
+    public void shouldActivateSaucesTab() {
+        basePage.verifySaucesTabIsActive();
     }
 
     @Test
     @DisplayName("Check if the filling ingredient 'Начинки' current")
-    public void checkIfFillingIngredientIsCurrent() {
-        boolean isDisplayed = basePage.checkFillingIngredientIsCurrent();
-        assertTrue(isDisplayed);
+    public void shouldActivateFillingsTab() {
+        basePage.verifyFillingsTabIsActive();
     }
 }
